@@ -1,6 +1,9 @@
+'use client'
+
 import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
+import { Suspense, useEffect } from 'react'
 
 export default function Home() {
   return (
@@ -27,19 +30,24 @@ export default function Home() {
               </button>
             </SignUpButton>
           </SignedOut>
-          <SignedIn>
-            <UserButton 
-              appearance={{
-                elements: {
-                  userButtonPopoverCard: 'bg-gray-900 border-gray-800',
-                  userButtonPopoverActionButton: 'text-white hover:bg-gray-800',
-                  userButtonPopoverActionButtonText: 'text-white',
-                  userButtonPopoverActionButtonIcon: 'text-gray-400',
-                  userButtonPopoverFooter: 'hidden'
-                }
-              }}
-            />
-          </SignedIn>
+                  <SignedIn>
+                    <UserButton 
+                      appearance={{
+                        elements: {
+                          userButtonPopoverCard: 'bg-black border border-gray-700 shadow-2xl rounded-lg',
+                          userButtonPopoverActionButton: 'text-white hover:bg-gray-800 px-4 py-2 rounded-md transition-colors',
+                          userButtonPopoverActionButtonText: 'text-white font-medium',
+                          userButtonPopoverActionButtonIcon: 'text-primary-400',
+                          userButtonPopoverFooter: 'hidden',
+                          userButtonPopoverMain: 'bg-black',
+                          userButtonPopoverHeader: 'bg-black border-b border-gray-700',
+                          userButtonPopoverBody: 'bg-black',
+                          userButtonTrigger: 'bg-gray-800 border border-gray-700 hover:bg-gray-700 transition-colors',
+                          userButtonAvatarBox: 'w-8 h-8',
+                        }
+                      }}
+                    />
+                  </SignedIn>
         </div>
       </nav>
 
@@ -70,14 +78,28 @@ export default function Home() {
           </div>
         </SignedOut>
         
-        <SignedIn>
-          <RedirectToDashboard />
-        </SignedIn>
+                <SignedIn>
+                  <Suspense fallback={<div className="text-white">Redirecting...</div>}>
+                    <RedirectToDashboard />
+                  </Suspense>
+                </SignedIn>
       </main>
     </div>
   )
 }
 
 function RedirectToDashboard() {
-  redirect('/dashboard')
+  useEffect(() => {
+    // Force redirect immediately
+    window.location.replace('/dashboard');
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="text-center">
+        <div className="text-white text-xl mb-4">Redirecting to Dashboard...</div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500 mx-auto"></div>
+      </div>
+    </div>
+  );
 }

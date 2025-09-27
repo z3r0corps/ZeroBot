@@ -1,8 +1,18 @@
 import { authMiddleware } from '@clerk/nextjs';
+import { NextResponse } from 'next/server';
 
 export default authMiddleware({
   publicRoutes: ['/'],
   ignoredRoutes: ['/api/webhooks(.*)'],
+  afterAuth: (auth, req) => {
+    // Handle successful authentication redirects
+    if (auth.isSignedIn && req.nextUrl.pathname === '/') {
+      return NextResponse.redirect(new URL('/dashboard', req.url));
+    }
+    
+    // Allow the request to continue
+    return NextResponse.next();
+  },
 });
 
 export const config = {

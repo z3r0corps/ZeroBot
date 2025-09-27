@@ -12,7 +12,10 @@ export default function Dashboard() {
   if (!isLoaded) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-white text-xl">Loading...</div>
+        <div className="text-center">
+          <div className="text-white text-xl mb-4">Loading Dashboard...</div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500 mx-auto"></div>
+        </div>
       </div>
     )
   }
@@ -42,23 +45,29 @@ export default function Dashboard() {
           <UserButton 
             appearance={{
               elements: {
-                userButtonPopoverCard: 'bg-gray-900 border-gray-800',
-                userButtonPopoverActionButton: 'text-white hover:bg-gray-800',
-                userButtonPopoverActionButtonText: 'text-white',
-                userButtonPopoverActionButtonIcon: 'text-gray-400',
+                userButtonPopoverCard: 'bg-black border border-gray-700 shadow-2xl rounded-lg',
+                userButtonPopoverActionButton: 'text-white hover:bg-gray-800 px-4 py-2 rounded-md transition-colors',
+                userButtonPopoverActionButtonText: 'text-white font-medium',
+                userButtonPopoverActionButtonIcon: 'text-primary-400',
                 userButtonPopoverFooter: 'hidden',
+                userButtonPopoverMain: 'bg-black',
+                userButtonPopoverHeader: 'bg-black border-b border-gray-700',
+                userButtonPopoverBody: 'bg-black',
                 // Hide security and account tabs, only show profile
                 tabsList: 'hidden',
-                profileSectionTitle: 'text-white',
+                profileSectionTitle: 'text-white font-semibold',
                 profileSectionContent: 'text-white',
                 // Only show username, password, and profile picture
-                formFieldInput: 'bg-gray-800 border-gray-700 text-white',
-                formFieldLabel: 'text-white',
-                formButtonPrimary: 'bg-primary-500 hover:bg-primary-600 text-white',
+                formFieldInput: 'bg-gray-800 border-gray-700 text-white rounded-md',
+                formFieldLabel: 'text-white font-medium',
+                formButtonPrimary: 'bg-primary-500 hover:bg-primary-600 text-white rounded-md',
                 avatarBox: 'relative group cursor-pointer',
-                avatarImage: 'rounded-full border-2 border-gray-600 group-hover:border-primary-500 transition-colors',
+                avatarImage: 'rounded-full border-2 border-primary-500',
                 // Add pencil icon overlay for profile picture
                 avatarBoxActions: 'absolute inset-0 bg-black bg-opacity-50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity',
+                // Style the user button itself
+                userButtonTrigger: 'bg-gray-800 border border-gray-700 hover:bg-gray-700 transition-colors',
+                userButtonAvatarBox: 'w-8 h-8',
               }
             }}
           />

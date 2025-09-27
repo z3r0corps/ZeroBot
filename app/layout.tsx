@@ -61,10 +61,12 @@ export default function RootLayout({
           colorTextSecondary: '#d1d5db',
         },
         signUp: {
-          afterSignUpUrl: '/dashboard'
+          afterSignUpUrl: '/dashboard',
+          fallbackRedirectUrl: '/dashboard'
         },
         signIn: {
-          afterSignInUrl: '/dashboard'
+          afterSignInUrl: '/dashboard',
+          fallbackRedirectUrl: '/dashboard'
         },
         userProfile: {
           elements: {
