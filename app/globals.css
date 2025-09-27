@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+html {
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Simple Clerk modal styling */
+.cl-modalBackdrop {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Hide all unwanted Clerk profile sections aggressively */
+.cl-securitySection,
+.cl-connectedAccountsSection,
+.cl-activeDevicesSection,
+.cl-emailAddressesSection,
+[data-clerk-element="securitySection"],
+[data-clerk-element="connectedAccountsSection"],
+[data-clerk-element="activeDevicesSection"],
+[data-clerk-element="emailAddressesSection"],
+.cl-tabsList,
+.cl-navButtons,
+.cl-accountButton,
+.cl-securityButton,
+.cl-accountSection,
+.cl-accountTab,
+.cl-securityTab {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Force show only profile section */
+.cl-profileSection,
+.cl-usernameField,
+.cl-passwordField,
+.cl-profileImageField,
+.cl-profileTab {
+  display: block !important;
+  visibility: visible !important;
+}
